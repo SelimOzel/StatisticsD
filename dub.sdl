@@ -1,0 +1,5 @@
+name "statisticsd"
+description "Statistics library for D language."
+authors "sozel"
+copyright "Copyright © 2021, sozel"
+license "MIT"
