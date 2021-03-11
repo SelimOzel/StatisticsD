@@ -3,3 +3,12 @@ description "Statistics library for D language."
 authors "sozel"
 copyright "Copyright © 2021, sozel"
 license "MIT"
+
+subPackage {
+	name "tests" 
+	sourcePaths "source/tests" "lib"
+	importPaths "lib"
+	targetName "test"
+	targetType "executable"
+	dependency "matplotlib-d" version="~>0.1.4"
+}
