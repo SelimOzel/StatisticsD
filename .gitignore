@@ -17,8 +17,12 @@
 # DUB
 .dub
 docs.json
+*selections.json
 __dummy.html
 docs/
 
 # Code coverage
 *.lst
+
+# Output files
+*.png
