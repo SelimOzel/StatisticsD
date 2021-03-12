@@ -68,7 +68,7 @@ double[2] compute_ordinary_least_squares(double[] array_x_IN, double[] array_y_I
 }
 
 /*
-	y_t = alpha + rho*x_t + e_t
+	y_t = alpha + rho*y_t-1 + e_t
 	Generate data points from an autoregressive process as a double vector
 */
 double[] generate_autoregressive_process(double alpha, double rho, double e_t, int n) {

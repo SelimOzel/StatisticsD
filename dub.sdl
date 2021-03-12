@@ -5,8 +5,8 @@ copyright "Copyright © 2021, sozel"
 license "MIT"
 
 subPackage {
-	name "test_timeseries" 
-	sourcePaths "source/test_timeseries" "lib"
+	name "test_ols" 
+	sourcePaths "source/test_ols" "lib"
 	importPaths "lib"
 	targetName "test"
 	targetType "executable"
@@ -21,3 +21,13 @@ subPackage {
 	targetType "executable"
 	dependency "matplotlib-d" version="~>0.1.4"
 }
+
+subPackage {
+	name "test_timeseries" 
+	sourcePaths "source/test_timeseries" "lib"
+	importPaths "lib"
+	targetName "test"
+	targetType "executable"
+	dependency "matplotlib-d" version="~>0.1.4"
+}
+
