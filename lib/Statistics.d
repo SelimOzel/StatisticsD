@@ -43,10 +43,27 @@ double compute_correlation(double[] array_x_IN, double[] array_y_IN) pure {
 	y_t = alpha + rho*x_t + e_t
 	Computes rho_est and alpha_est based on n observations given time series x_t and y_t where e_t is random noise
 */ 
-double[2] compute_ordinary_least_squares() pure {
+double[2] compute_ordinary_least_squares(double[] array_x_IN, double[] array_y_IN) pure {
+	enforce(array_x_IN.length == array_y_IN.length, "compute_ordinary_least_squares: not same length"); 
+	int n = array_x_IN.length;
 	double rho_est = 0.0;
 	double alpha_est = 0.0;
-
+	double sum_xi_times_yi = 0.0;
+	double sum_xi = 0.0;
+	double sum_yi = 0.0;
+	double sum_xi_sqrd = 0.0;
+	double[] error_term;
+	for (int i = 0; i<n; i++) {
+		sum_xi_times_yi += array_x_IN[i]*array_y_IN[i];
+		sum_xi += array_x_IN[i];
+		sum_yi += array_y_IN[i];
+		sum_xi_sqrd += pow(array_x_IN[i],2);
+	}
+	rho_est = ( sum_xi_times_yi - 1/n*sum_xi*sum_yi ) / ( sum_xi_sqrd - 1/n*pow(sum_xi,2) );
+	for (int i = 0; i<n; i++) {
+		error_term ~= array_y_IN[i]-rho_est*array_x_IN[i];
+	}
+	alpha_est = compute_mean(error_term);
 	return [rho_est, alpha_est];
 }
 
@@ -57,7 +74,7 @@ double[2] compute_ordinary_least_squares() pure {
 double[] generate_autoregressive_process(double alpha, double rho, double e_t, int n) {
     double y = 0;
     double[] time_series;
-    for (int t = 0; t<n; t++) {
+    for (int i = 0; i<n; i++) {
         if (dice(0.5, 0.5) == 1) y = alpha + rho*y + e_t;
         else y = alpha + rho*y - e_t;
         time_series ~= y;   	
