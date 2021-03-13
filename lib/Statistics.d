@@ -22,6 +22,14 @@ double compute_std(double[] array_IN) pure {
 	return sum/n;	
 }
 
+/*
+	Compute variance
+*/
+double compute_variance(double[] array_IN) pure {
+	double std = compute_std(array_IN);
+	return pow(std,2);
+}
+
 /* 
 	Correlation between two time series.
 */ 
