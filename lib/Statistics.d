@@ -13,7 +13,7 @@ double compute_mean(double[] array_IN) pure {
 }
 
 /*
-	Standard deviation of a time series
+	Standard deviation (sigma) of a time series
 */
 double compute_std(double[] array_IN) pure {
 	double sum = 0;
@@ -23,7 +23,7 @@ double compute_std(double[] array_IN) pure {
 }
 
 /*
-	Compute variance
+	Compute variance (sigma^2)
 */
 double compute_variance(double[] array_IN) pure {
 	double std = compute_std(array_IN);
@@ -48,6 +48,7 @@ double compute_correlation(double[] array_x_IN, double[] array_y_IN) pure {
 }
 
 /* 
+	Compute ordinary least squares estimators for two time series
 	y = b1 + b2*x
 */ 
 double[2] compute_ordinary_least_squares(double[] array_x_IN, double[] array_y_IN) pure {
@@ -68,8 +69,8 @@ double[2] compute_ordinary_least_squares(double[] array_x_IN, double[] array_y_I
 }
 
 /*
+	Generate points from an autoregressive process as a double vector
 	y_t = alpha + rho*y_t-1 + e_t
-	Generate data points from an autoregressive process as a double vector
 */
 double[] generate_autoregressive_process(double alpha, double rho, double e_t, int n) {
     double y = 0;
